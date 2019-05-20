@@ -21,7 +21,9 @@ while True:
 
     if not ret:
         continue
+
     frame_new = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    # frame_new = cv2.imread("/Users/wangzy/test/t.jpeg",cv2.COLOR_BGR2RGB)
     # 检测脸部
     dets = detector(frame_new, 1)
     print("Number of faces detected: {}".format(len(dets)))
