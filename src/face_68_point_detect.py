@@ -8,21 +8,24 @@ import dlib
 
 # 加载并初始化检测器
 # 模型下载地址http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2
+
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor('shape_predictor_68_face_landmarks.dat')
 
 camera = cv2.VideoCapture(0)
+
 if not camera.isOpened():
-    print("cannot open camear")
+    print("cannot open camera")
     exit(0)
 
 while True:
     ret, frame = camera.read()
-
     if not ret:
         continue
 
+    # frame_new = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     frame_new = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    print("px wh:",frame_new.shape[0],frame_new.shape[1])
     # frame_new = cv2.imread("/Users/wangzy/test/t.jpeg",cv2.COLOR_BGR2RGB)
     # 检测脸部
     dets = detector(frame_new, 1)
